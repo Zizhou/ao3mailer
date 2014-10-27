@@ -6,5 +6,6 @@ download, and sends it to the provided email(preferably kindle).
 
 Hell, I don't think this will even have a frontend beyond the extension.
 
-Dependencies:
-none, for now
+SETUP:
+add AO3_MAILER and AO3_PASSWORD to settings file with gmail login and password
+because I *still* am too lazy to learn how to OAuth.
