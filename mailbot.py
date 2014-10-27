@@ -41,7 +41,7 @@ def pack_MIME(send_to, file_url):
     return mail
 
 def send_mail(mail, address):
-    print mail
+    print >> sys.stderr, mail
     #probably should be a setting and not hardcoded, but eh
     server = smtplib.SMTP('smtp.gmail.com','587')
     server.ehlo()
@@ -58,14 +58,14 @@ def get_file(url):
         mobi_re = re.match(r'(.*)(href=")(?P<mobi>.*)(">MOBI)(.*)', line)
         if mobi_re:
             file_url += mobi_re.group('mobi')
-    print 'the file is at...'
-    print  file_url
+    print >> sys.stderr, 'the file is at...'
+    print  >> sys.stderr, file_url
     try:
         mobi_file = urllib.urlretrieve(file_url)
     except Exception as e:
         print >> sys.stderr, e
         return False
-    print mobi_file
+    print >> sys.stderr, mobi_file
     return mobi_file[0]
 
 def clean_name(name):
