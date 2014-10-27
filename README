@@ -1,0 +1,10 @@
+Backend for some silly chrome extension that probably already exists, but in a 
+better, more generic form.
+
+Single purpose! Gets a story url from archiveofourown.org, gets the .mobi 
+download, and sends it to the provided email(preferably kindle).
+
+Hell, I don't think this will even have a frontend beyond the extension.
+
+Dependencies:
+none, for now
