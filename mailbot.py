@@ -6,15 +6,18 @@ from email.mime.text import MIMEText
 from email import Encoders
 
 import os
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'devletter.settings'
 
 from django.conf import settings
+
+import sys
 
 def pack_MIME(send_to, file_url):
     try:
         attachment = get_file(file_url)
     except Exception as e:
-        print e
+        print >> sys.stderr, e
         return False
     mail = MIMEMultipart('alternative')
     mail['Subject'] = "Automated .mobi mailing."
@@ -32,7 +35,7 @@ def pack_MIME(send_to, file_url):
         attach_mobi.add_header('Content-Disposition', mobi_header)
         mail.attach(attach_mobi)
     except Exception as e:
-        print e
+        print >> sys.stderr, e
         return False
 
     return mail
@@ -59,7 +62,8 @@ def get_file(url):
     print  file_url
     try:
         mobi_file = urllib.urlretrieve(file_url)
-    except:
+    except Exception as e:
+        print >> sys.stderr, e
         return False
     print mobi_file
     return mobi_file[0]
